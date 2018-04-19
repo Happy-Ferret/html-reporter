@@ -102,17 +102,15 @@ describe('hermione test adapter', () => {
             assert.deepEqual(result.suitePath, ['root-title', 'some-title']);
         });
 
-        ['imagePath', 'browserId'].forEach((key) => {
-            it(`should return "${key}" field as is`, () => {
-                const testResult = {
-                    root: true,
-                    [key]: 'some-value'
-                };
+        it('should return "browserId" field as is', () => {
+            const testResult = {
+                root: true,
+                browserId: 'bro'
+            };
 
-                const result = (new HermioneTestResultAdapter(testResult)).prepareTestResult();
+            const result = (new HermioneTestResultAdapter(testResult)).prepareTestResult();
 
-                assert.propertyVal(result, key, 'some-value');
-            });
+            assert.propertyVal(result, 'browserId', 'bro');
         });
     });
 });
